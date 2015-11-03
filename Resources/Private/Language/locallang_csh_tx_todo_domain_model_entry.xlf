@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-11-02T18:33:02Z" product-name="todo">
+		<header/>
+		<body>
+			<trans-unit id="title.description">
+				<source>title</source>
+			</trans-unit>
+			<trans-unit id="solved.description">
+				<source>solved</source>
+			</trans-unit>
+			<trans-unit id="deleted.description">
+				<source>deleted</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

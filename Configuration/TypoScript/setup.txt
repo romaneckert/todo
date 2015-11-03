@@ -1,0 +1,50 @@
+plugin.tx_todo {
+	view {
+		templateRootPath = {$plugin.tx_todo.view.templateRootPath}
+		partialRootPath = {$plugin.tx_todo.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_todo.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_todo.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+page.includeJS.tx_todo_jquery = typo3conf/ext/todo/Resources/Public/js/jquery.min.js
+page.includeJS.tx_todo_bootstrap = typo3conf/ext/todo/Resources/Public/js/bootstrap.min.js
+page.includeJS.tx_todo = typo3conf/ext/todo/Resources/Public/js/todo.js
+page.includeCSS.tx_todo_bootstrap = typo3conf/ext/todo/Resources/Public/css/bootstrap.min.css
+page.includeCSS.tx_todo_bootstrap_theme = typo3conf/ext/todo/Resources/Public/css/bootstrap-theme.min.css
+page.includeCSS.tx_todo = typo3conf/ext/todo/Resources/Public/css/todo.css
+
+tx_todo_ajax = PAGE
+tx_todo_ajax {
+  typeNum = 847382
+  config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = 0
+    admPanel = 0
+    additionalHeaders = Content-type: text/json
+    no_cache = 1
+  }
+
+  10 = USER
+  10 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = Todo
+    pluginName = List
+    vendorName = Eckert
+    controller = Entry
+    switchableControllerActions {
+      Entry {
+        1 = list,
+        2 = ajax
+      }
+    }
+    view < plugin.tx_todo.view
+    persistence < plugin.tx_todo.persistence
+    settings < plugin.tx_todo.settings
+  }

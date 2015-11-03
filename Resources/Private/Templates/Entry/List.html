@@ -1,0 +1,24 @@
+<f:layout name="Default" />
+<f:section name="main">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Todo List</h2>
+			<ul class="list-group todo-actions">
+				<li class="list-group-item">
+					<div class="input-group">
+						<input type="text" class="form-control todo-title" placeholder="...">
+						<span class="input-group-btn">
+							<button class="btn btn-default todo-add" type="button">Add</button>
+						</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="list-group todo-entries">
+				<f:for each="{entries}" as="entry">
+					<li class="list-group-item"><input type="checkbox" <f:if condition="{entry.solved}"><f:then>checked="checked"</f:then></f:if> value="{entry.uid}"><span>{entry.title}</span></li>
+				</f:for>
+			</ul>
+			<f:link.action class="btn btn-default" action="delete">Delete Solved</f:link.action>
+		</div>
+	</div>
+</f:section>
