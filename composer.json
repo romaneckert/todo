@@ -1,0 +1,27 @@
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.typo3.org/"
+        }
+    ],
+    "name": "app/todo",
+    "description": "app/todo",
+    "require": {
+        "php": "7.3.*",
+        "ext-gd": "*",
+        "ext-intl": "*",
+        "ext-json": "*",
+        "typo3/cms-fluid-styled-content": "9.5.11",
+        "typo3/minimal": "9.5",
+        "symfony/dotenv": "5.0.1"
+    },
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eckert\\Todo\\": "public/typo3conf/ext/todo/Classes"
+        }
+    }
+}

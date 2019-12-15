@@ -1,1 +1,11 @@
+# phpstorm
 .idea
+
+# typo3 9
+.env
+public/index.php
+public/typo3
+public/fileadmin
+public/typo3temp
+vendor
+var
