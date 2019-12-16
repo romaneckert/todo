@@ -38,6 +38,9 @@ return [
         'filelist' => [
             'packagePath' => 'typo3/sysext/filelist/',
         ],
+        'todo' => [
+            'packagePath' => 'typo3conf/ext/todo/',
+        ],
     ],
     'version' => 5,
 ];
