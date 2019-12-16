@@ -1,5 +1,19 @@
-$.fn.todo = function() {
-    $(this).each(function(l, list) {
+$(document).ready(function (e) {
+    $('.todo-add').submit(function (e) {
+
+        e.preventDefault();
+
+        $.post($(this).attr('action'), $(this).serialize()).done(function (data) {
+            console.log(data);
+        });
+
+    });
+});
+
+
+$.fn.todo = function () {
+
+    $(this).each(function (l, list) {
 
         var $listWrapper = jQuery(list);
 
@@ -12,24 +26,22 @@ $.fn.todo = function() {
 
         function updateListener() {
             $todoAdd = $listWrapper.find('.todo-add');
-            $todoAdd.off().on('click', function(e) {
-                update({uid:null, title:$todoInput.val()});
+            $todoAdd.off().on('click', function (e) {
+                update({title: $todoInput.val()});
             });
 
             $todoCheckboxes = $listWrapper.find('.todo-entries input[type=checkbox]');
-            $todoCheckboxes.off().on('change', $listWrapper.find('.todo-entries input[type=checkbox]'), function(e) {
+            $todoCheckboxes.off().on('change', $listWrapper.find('.todo-entries input[type=checkbox]'), function (e) {
                 var $checkbox = $(e.target);
                 var uid = $checkbox.val();
                 var checked = $checkbox.is(':checked') | 0;
 
-                update({uid:uid, solved:parseInt(checked)});
+                update({uid: uid, solved: parseInt(checked)});
 
             });
         }
 
         function addToList(entry) {
-
-            console.log(entry);
 
             var $item = $('<li class="list-group-item"/>');
             var $input = $('<input type="checkbox" class="todo-check" value="' + entry.uid + '"/>');
@@ -44,12 +56,12 @@ $.fn.todo = function() {
         function update(entry) {
             $.post(uri, {
                 tx_todo_list: {
-                    action: "ajax",
-                    controller: "Entry",
+                    action: 'add',
+                    controller: 'Entry',
                     entry: entry
                 }
-            }).done(function(data) {
-                if(!entry.uid) {
+            }).done(function (data) {
+                if (!entry.uid) {
                     addToList(data);
                 }
 
@@ -64,6 +76,3 @@ $.fn.todo = function() {
     return this;
 };
 
-$(document).on('ready', function(e) {
-    $(".tx-todo").todo();
-});

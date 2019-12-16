@@ -4,6 +4,7 @@ return [
     'ctrl' => [
         'title' => 'Entry',
         'label' => 'title',
+        'iconfile' => 'EXT:todo/ext_icon.svg',
     ],
     'columns' => [
         'title' => [

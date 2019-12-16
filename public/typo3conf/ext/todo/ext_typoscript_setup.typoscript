@@ -1,0 +1,45 @@
+plugin.tx_todo {
+    view {
+        templateRootPath = EXT:todo/Resources/Private/Templates/
+        partialRootPath = EXT:todo/Resources/Private/Partials/
+        layoutRootPath = EXT:todo/Resources/Private/Layouts/
+    }
+
+    persistence {
+        storagePid = 2
+    }
+}
+
+
+page.includeJS.tx_todo = EXT:todo/Resources/Public/js/todo.js
+page.includeCSS.tx_todo = EXT:todo/Resources/Public/css/todo.css
+
+tx_todo_ajax = PAGE
+tx_todo_ajax {
+    typeNum = 847382
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        additionalHeaders = Content-type: text/json
+        no_cache = 1
+    }
+
+    10 = USER
+    10 {
+        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+        extensionName = Todo
+        pluginName = List
+        vendorName = Eckert
+        controller = Entry
+        switchableControllerActions {
+            Entry {
+                1 = list
+                2 = ajax
+            }
+        }
+
+        view < plugin.tx_todo.view
+        persistence < plugin.tx_todo.persistence
+        settings < plugin.tx_todo.settings
+    }

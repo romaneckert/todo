@@ -1,69 +1,41 @@
 <?php
+
 namespace Eckert\Todo\Controller;
 
-
-/***************************************************************
- *
- *  (c) 2015 Roman Eckert <mail@romaneckert.de>
- *
- *  All rights reserved
- *
- ***************************************************************/
 use Eckert\Todo\Domain\Model\Entry;
+use Eckert\Todo\Domain\Repository\EntryRepository;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Web\Request;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
-/**
- * EntryController
- */
-class EntryController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class EntryController extends ActionController {
 
-	/**
-	 *
-	 * @var \Eckert\Todo\Domain\Repository\EntryRepository
-	 * @inject
-	 */
-	protected $entryRepository = NULL;
+    /** @var EntryRepository */
+    protected $entryRepository;
 
+    public function __construct(EntryRepository $entryRepository) {
+        parent::__construct();
+        $this->entryRepository = $entryRepository;
+    }
 
-	public function listAction() {
-		$entries = $this->entryRepository->findAll();
+    public function listAction(): void {
+        $this->view->assignMultiple([
+            'entries', $this->entryRepository->findAll()
+        ]);
+    }
 
-		$this->view->assign('entries', $entries);
-	}
-
-	public function ajaxAction() {
-		$arguments = $this->request->getArguments();
-        $entryData = $arguments['entry'];
-
-        if(empty($entryData['uid'])) {
-            $entry = new Entry();
-            if(!empty($entryData['title'])) {
-                $entry->setTitle($entryData['title']);
-            }
+    public function addAction(Entry $entry = null): void {
+        try {
             $this->entryRepository->add($entry);
-        } else {
-            $entry = $this->entryRepository->findByUid($entryData['uid']);
+        } catch (\Exception $e) {
 
-            if(!empty($entryData['title'])) {
-                $entry->setTitle($entryData['title']);
-            }
-
-            if(!is_null($entryData['solved'])) {
-
-                $entry->setSolved($entryData['solved']);
-            }
-
-            $this->entryRepository->update($entry);
         }
+    }
 
-        $this->objectManager->get('Tx_Extbase_Persistence_Manager')->persistAll();
-
-		return json_encode($entry->_getProperties());
-	}
-
-    public function deleteAction() {
+    public function deleteAction(): void {
         $entries = $this->entryRepository->findAll();
-        foreach($entries as $entry) {
-            if($entry->getSolved() == 1) {
+        foreach ($entries as $entry) {
+            if ($entry->getSolved() == 1) {
                 $this->entryRepository->remove($entry);
             }
         }

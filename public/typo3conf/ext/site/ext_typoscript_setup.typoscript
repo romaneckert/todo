@@ -1,0 +1,97 @@
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
+
+lib.dynamicContent = COA
+lib.dynamicContent {
+    10 = LOAD_REGISTER
+    10 {
+        colPos.cObject = TEXT
+        colPos.cObject {
+            field = colPos
+            ifEmpty.cObject = TEXT
+            ifEmpty.cObject {
+                value.current = 1
+                ifEmpty = 0
+            }
+        }
+
+        pageUid.cObject = TEXT
+        pageUid.cObject {
+            field = pageUid
+            ifEmpty.data = TSFE:id
+        }
+
+        contentFromPid.cObject = TEXT
+        contentFromPid.cObject {
+            data = DB:pages:{register:pageUid}:content_from_pid
+            data.insertData = 1
+        }
+
+        wrap.cObject = TEXT
+        wrap.cObject {
+            field = wrap
+        }
+    }
+
+    20 = CONTENT
+    20 {
+        table = tt_content
+        select {
+            includeRecordsWithoutDefaultTranslation = 1
+            orderBy = sorting
+            where = {#colPos}={register:colPos}
+            where.insertData = 1
+            pidInList.data = register:pageUid
+            pidInList.override.data = register:contentFromPid
+        }
+
+        stdWrap {
+            dataWrap = {register:wrap}
+            required = 1
+        }
+    }
+
+    30 = RESTORE_REGISTER
+}
+
+page = PAGE
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+        file {
+            stdWrap {
+                cObject = CASE
+                cObject {
+
+                    key {
+                        data = levelfield:-1, backend_layout, slide
+                        override {
+                            field = backend_layout
+                        }
+                    }
+
+                    default = TEXT
+                    default {
+                        value = EXT:site/Resources/Private/Templates/Page/Default.html
+                    }
+                }
+            }
+        }
+
+        partialRootPath = EXT:site/Resources/Private/Partials/
+        layoutRootPath = EXT:site/Resources/Private/Layouts/
+
+        extbase {
+            controllerExtensionName = site
+        }
+    }
+
+    includeJS {
+        tx_site_jquery = https://code.jquery.com/jquery-3.4.1.min.js
+        tx_site_popper = https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js
+        tx_site_bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js
+    }
+
+    includeCSS {
+        tx_tsite_bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css
+    }
+}

@@ -1,0 +1,22 @@
+<h2>Todo List</h2>
+<ul class="list-group todo-actions">
+    <li class="list-group-item">
+        <f:form class="todo-add" action="add" name="entry" object="{entry}">
+            <div class="input-group">
+                <f:form.textfield property="title" class="form-control todo-title"/>
+                <f:form.button class="btn btn-default todo-add">Add</f:form.button>
+            </div>
+        </f:form>
+    </li>
+</ul>
+<ul class="list-group todo-entries">
+    <f:for each="{entries}" as="entry">
+        <li class="list-group-item">
+            <f:form action="solved" name="entry" object="{entry}">
+                <f:form.checkbox name="solved" value="solved"/>
+            </f:form>
+            <span>{entry.title}</span>
+        </li>
+    </f:for>
+</ul>
+<f:link.action class="btn btn-default" action="delete">Delete Solved</f:link.action>
