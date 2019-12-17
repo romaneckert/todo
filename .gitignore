@@ -9,3 +9,6 @@ public/fileadmin
 public/typo3temp
 vendor
 var
+
+# php-cs-fixer
+.php_cs.cache
