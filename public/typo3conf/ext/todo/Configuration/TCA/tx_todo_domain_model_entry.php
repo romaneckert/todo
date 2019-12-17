@@ -13,7 +13,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'eval' => 'trim'
+                'eval' => 'trim',
             ],
         ],
         'solved' => [
@@ -21,19 +21,19 @@ return [
             'label' => 'Solved',
             'config' => [
                 'type' => 'check',
-                'default' => 0
-            ]
+                'default' => 0,
+            ],
         ],
         'deleted' => [
             'exclude' => 1,
             'label' => 'Deleted',
             'config' => [
                 'type' => 'check',
-                'default' => 0
-            ]
+                'default' => 0,
+            ],
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'title,solved,deleted']
-    ]
+        '0' => ['showitem' => 'title,solved,deleted'],
+    ],
 ];

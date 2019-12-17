@@ -3,7 +3,6 @@
 defined('TYPO3_MODE') or die();
 
 (static function () {
-
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Eckert.Todo',
         'List',
@@ -11,5 +10,3 @@ defined('TYPO3_MODE') or die();
         ['Entry' => 'list,add,delete']
     );
 })();
-
-

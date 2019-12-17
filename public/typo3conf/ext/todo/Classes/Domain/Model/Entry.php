@@ -5,14 +5,13 @@ namespace Eckert\Todo\Domain\Model;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Entry extends AbstractEntity {
-
     /** @var string */
     protected $title = '';
 
-    /** @var boolean */
+    /** @var bool */
     protected $solved = 0;
 
-    /** @var boolean */
+    /** @var bool */
     protected $deleted = 0;
 
     public function getTitle(): string {
@@ -38,6 +37,4 @@ class Entry extends AbstractEntity {
     public function setDeleted(bool $deleted): void {
         $this->deleted = $deleted;
     }
-
-
 }
