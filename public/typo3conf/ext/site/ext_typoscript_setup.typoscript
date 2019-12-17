@@ -87,11 +87,11 @@ page {
 
     includeJS {
         tx_site_jquery = https://code.jquery.com/jquery-3.4.1.min.js
-        tx_site_popper = https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js
-        tx_site_bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js
+        tx_site_popper = https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js
+        tx_site_bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js
     }
 
     includeCSS {
-        tx_tsite_bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css
+        tx_tsite_bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
     }
 }

@@ -4,7 +4,8 @@ CREATE TABLE tx_todo_domain_model_entry (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title varchar(255) NOT NULL,
-	solved tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	description text,
+	done tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

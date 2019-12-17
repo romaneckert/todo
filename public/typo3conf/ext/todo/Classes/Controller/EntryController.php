@@ -5,37 +5,66 @@ namespace Eckert\Todo\Controller;
 use Eckert\Todo\Domain\Model\Entry;
 use Eckert\Todo\Domain\Repository\EntryRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\View\JsonView;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 class EntryController extends ActionController {
     /** @var EntryRepository */
     protected $entryRepository;
 
-    public function __construct(EntryRepository $entryRepository) {
+    /** @var PersistenceManager */
+    protected $persistenceManager;
+
+    protected $viewFormatToObjectNameMap = ['json' => JsonView::class];
+
+    public function __construct(EntryRepository $entryRepository, PersistenceManager $persistenceManager) {
         parent::__construct();
         $this->entryRepository = $entryRepository;
+        $this->persistenceManager = $persistenceManager;
     }
 
-    public function listAction(): void {
-        $this->view->assignMultiple([
-            'entries', $this->entryRepository->findAll(),
-        ]);
-    }
+    public function addAction(Entry $entry): void {
 
-    public function addAction(Entry $entry = null): void {
         try {
             $this->entryRepository->add($entry);
         } catch (\Exception $e) {
         }
+
+        $this->persistenceManager->persistAll();
+
+        $this->forward('list');
     }
 
-    public function deleteAction(): void {
-        $entries = $this->entryRepository->findAll();
-        foreach ($entries as $entry) {
-            if (1 == $entry->getSolved()) {
-                $this->entryRepository->remove($entry);
-            }
+    public function doneAction(Entry $entry): void {
+
+        $entry->setDone(!$entry->isDone());
+
+        $this->entryRepository->update($entry);
+
+        $this->persistenceManager->persistAll();
+
+        $this->forward('list');
+    }
+
+    public function deleteDoneAction(): void {
+
+        $doneEntries = $this->entryRepository->findByDone(true);
+
+        foreach ($doneEntries as $doneEntry) {
+            $this->entryRepository->remove($doneEntry);
         }
 
-        $this->redirect('list');
+        $this->persistenceManager->persistAll();
+
+        $this->forward('list');
+    }
+
+    public function listAction(): void {
+
+        $this->view->assignMultiple([
+            'newEntry' => new Entry(),
+            'openEntries' => $this->entryRepository->findByDone(false),
+            'doneEntries' => $this->entryRepository->findByDone(true),
+        ]);
     }
 }

@@ -14,32 +14,15 @@ plugin.tx_todo {
 page.includeJS.tx_todo = EXT:todo/Resources/Public/js/todo.js
 page.includeCSS.tx_todo = EXT:todo/Resources/Public/css/todo.css
 
-tx_todo_ajax = PAGE
-tx_todo_ajax {
-    typeNum = 847382
+todoListJson = PAGE
+todoListJson {
+    typeNum = 984736
+    10 =< tt_content.list.20.todo_list
+
     config {
         disableAllHeaderCode = 1
-        xhtml_cleaning = 0
         admPanel = 0
-        additionalHeaders = Content-type: text/json
         no_cache = 1
     }
+}
 
-    10 = USER
-    10 {
-        userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-        extensionName = Todo
-        pluginName = List
-        vendorName = Eckert
-        controller = Entry
-        switchableControllerActions {
-            Entry {
-                1 = list
-                2 = ajax
-            }
-        }
-
-        view < plugin.tx_todo.view
-        persistence < plugin.tx_todo.persistence
-        settings < plugin.tx_todo.settings
-    }

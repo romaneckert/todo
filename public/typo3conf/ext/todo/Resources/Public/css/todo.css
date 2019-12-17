@@ -1,3 +1,7 @@
 .todo-entries span {
-    padding-left:10px;
+    padding-left: 10px;
+}
+
+.todo-card {
+    margin-bottom: 20px;
 }

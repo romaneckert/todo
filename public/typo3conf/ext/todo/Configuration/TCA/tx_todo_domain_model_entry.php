@@ -16,17 +16,19 @@ return [
                 'eval' => 'trim',
             ],
         ],
-        'solved' => [
+        'description' => [
             'exclude' => 1,
-            'label' => 'Solved',
+            'label' => 'Description',
             'config' => [
-                'type' => 'check',
-                'default' => 0,
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 15,
+                'eval' => 'trim',
             ],
         ],
-        'deleted' => [
+        'done' => [
             'exclude' => 1,
-            'label' => 'Deleted',
+            'label' => 'Done',
             'config' => [
                 'type' => 'check',
                 'default' => 0,
@@ -34,6 +36,6 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'title,solved,deleted'],
+        '0' => ['showitem' => 'title,done'],
     ],
 ];

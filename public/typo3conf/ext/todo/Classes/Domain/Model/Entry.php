@@ -2,19 +2,26 @@
 
 namespace Eckert\Todo\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Entry extends AbstractEntity {
-    /** @var string */
-    protected $title = '';
+    /**
+     * @var string
+     * @Validate("NotEmpty")
+     */
+    protected $title;
+
+    /**
+     * @var string
+     * @Validate("NotEmpty")
+     */
+    protected $description;
 
     /** @var bool */
-    protected $solved = 0;
+    protected $done = false;
 
-    /** @var bool */
-    protected $deleted = 0;
-
-    public function getTitle(): string {
+    public function getTitle(): ?string {
         return $this->title;
     }
 
@@ -22,19 +29,19 @@ class Entry extends AbstractEntity {
         $this->title = $title;
     }
 
-    public function isSolved(): bool {
-        return $this->solved;
+    public function getDescription(): ?string {
+        return $this->description;
     }
 
-    public function setSolved(bool $solved): void {
-        $this->solved = $solved;
+    public function setDescription(string $description): void {
+        $this->description = $description;
     }
 
-    public function getDeleted(): bool {
-        return $this->deleted;
+    public function isDone(): bool {
+        return $this->done;
     }
 
-    public function setDeleted(bool $deleted): void {
-        $this->deleted = $deleted;
+    public function setDone(bool $done): void {
+        $this->done = $done;
     }
 }
