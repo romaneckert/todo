@@ -1,0 +1,24 @@
+base: /
+baseVariants:
+  -
+    base: 'https://todo.localhost/'
+    condition: 'applicationContext == "Development"'
+  -
+    base: 'https://typo3-todo.herokuapp.com/'
+    condition: 'applicationContext == "Production"'
+errorHandling: {  }
+languages:
+  -
+    title: German
+    enabled: true
+    base: /
+    typo3Language: de
+    locale: de_DE.UTF-8
+    iso-639-1: de
+    navigationTitle: German
+    hreflang: de-DE
+    direction: ''
+    flag: de
+    languageId: '0'
+rootPageId: 1
+routes: {  }
