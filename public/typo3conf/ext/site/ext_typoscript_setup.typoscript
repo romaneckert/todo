@@ -95,4 +95,9 @@ page {
         tx_site_bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
         tx_site_fontawesome = EXT:site/Resources/Public/css/fontawesome.min.css
     }
+
+    headerData {
+        1 = TEXT
+        1.value = <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    }
 }
