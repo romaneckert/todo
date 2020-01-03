@@ -5,3 +5,49 @@
 .todo-card {
     margin-bottom: 20px;
 }
+.todo-list .spinner-border {
+    display: none;
+}
+.todo-list-options .btn {
+    margin-bottom: 15px;
+}
+
+.todo-list-options form:last-child .btn {
+    margin-bottom: 0;
+}
+
+.todo-list-block {
+    margin-bottom: 40px;
+}
+
+.todo-list-block .spinner-border {
+    position:absolute;
+    top: 13px;
+    left: 13px;
+}
+
+.todo-list .list-group .title {
+    font-size:18px;
+    font-weight: 500;
+    line-height: 36px;
+}
+.todo-list-block .list-group .btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    padding:5px 6px 6px 6px;
+    width:43px;
+    height:43px;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+}
+.todo-list-block .list-group li {
+    padding-left: 65px;
+    min-height: 64px;
+}
+.todo-list hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

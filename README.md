@@ -8,4 +8,4 @@ https://todo.localhost/
 
 ### heroku deployment
 
-git push heroku typo3_9:master
+git push heroku master:master

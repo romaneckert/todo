@@ -1,89 +1,117 @@
 <div class="todo-list">
 
-    <h3>Add task</h3>
+    <div class="row">
+        <div class="todo-list-block col-md-12 col-lg-7">
+            <h5>Add task</h5>
 
-    <f:form action="add" name="entry" object="{newEntry}" pageType="984736">
-        <div class="todo-card card">
-            <div class="card-body">
+            <f:form action="add" name="entry" object="{newEntry}" pageType="984736">
+
                 <div class="form-group">
                     <label for="title">Title</label>
                     <f:form.textfield id="title" property="title" class="form-control" required="true"/>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <f:form.textarea id="description" property="description" class="form-control" required="true"/>
+                    <f:form.textarea id="description" property="description" class="form-control"/>
                 </div>
 
-                <f:form.button class="btn btn-primary">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
-                    Add task
-                </f:form.button>
-            </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <f:form.button class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i class="far fa-plus-square"></i>
+                        </f:form.button>
+
+                        <span class="title">Add task</span>
+                    </li>
+                </ul>
+
+
+
+            </f:form>
         </div>
-    </f:form>
+        <div class="todo-list-block todo-list-options col-md-12 col-lg-5">
+            <h5>Options</h5>
 
-    <h3>Open tasks</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <f:form action="loadFixtures" pageType="984736">
+                        <f:form.button class="btn btn-primary">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i class="fas fa-undo"></i>
+                        </f:form.button>
 
+                        <span class="title">reset example data</span>
+                    </f:form>
+                </li>
+                <li class="list-group-item">
+                    <f:form action="deleteDone" pageType="984736">
+                        <f:form.button class="btn btn-danger">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            <i class="far fa-minus-square"></i>
+                        </f:form.button>
 
-    <div class="row">
-        <f:if condition="{openEntries}">
-            <f:then>
-                <f:for each="{openEntries}" as="openEntry">
-                    <div class="col-md-12 col-lg-6">
-                        <f:form action="done" name="entry" object="{openEntry}" pageType="984736">
-                            <div class="todo-card card">
-                                <div class="card-body">
-                                    <h5 class="card-title">{openEntry.title}</h5>
-                                    <p class="card-text">{openEntry.description}</p>
-                                    <f:form.button class="btn btn-success">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
-                                        done
-                                    </f:form.button>
-                                </div>
-                            </div>
-                        </f:form>
-                    </div>
-                </f:for>
-            </f:then>
-            <f:else>
-                <div class="col-md-12 col-lg-6">
-                    <div class="todo-card card">
-                        <div class="card-body">
-                            <h5 class="card-title">no open tasks</h5>
-                        </div>
-                    </div>
-                </div>
-            </f:else>
-        </f:if>
+                        <span class="title">delete completed tasks</span>
+                    </f:form>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <f:if condition="{doneEntries}">
-        <h3>Completed tasks</h3>
-        <div class="row">
-            <f:for each="{doneEntries}" as="doneEntry">
-                <div class="col-md-12 col-lg-6">
-                    <f:form action="done" name="entry" object="{doneEntry}" pageType="984736">
-                        <div class="todo-card card">
-                            <div class="card-body">
-                                <h5 class="card-title">{doneEntry.title}</h5>
-                                <p class="card-text">{doneEntry.description}</p>
-                                <f:form.button class="btn btn-warning">
-                                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
-                                    not yet done
-                                </f:form.button>
-                            </div>
-                        </div>
-                    </f:form>
-                </div>
-            </f:for>
+    <div class="row">
+        <div class="todo-list-block col-md-12 col-lg-6">
+            <h5>Open tasks</h5>
+
+            <f:if condition="{openEntries}">
+                <f:then>
+                    <ul class="list-group">
+                        <f:for each="{openEntries}" as="openEntry">
+                            <li class="list-group-item">
+                                <f:form action="done" name="entry" object="{openEntry}" pageType="984736">
+                                    <f:form.button class="btn btn-success">
+                                        <span class="spinner-border spinner-border-sm"></span>
+                                        <i class="far fa-check-circle"></i>
+                                    </f:form.button>
+                                </f:form>
+
+                                <span class="title">{openEntry.title}</span>
+                                <f:if condition="{openEntry.description}">
+                                    <hr/>
+                                    <p>{openEntry.description}</p>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:then>
+                <f:else>
+                    <p>no open tasks</p>
+                </f:else>
+            </f:if>
         </div>
 
-        <f:form class="todo-form-delete-done" action="deleteDone" pageType="984736">
-            <f:form.button class="btn btn-danger">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none;"></span>
-                delete completed tasks
-            </f:form.button>
-        </f:form>
-    </f:if>
+        <div class="todo-list-block col-md-12 col-lg-6">
+            <h5>Completed tasks</h5>
 
+            <f:if condition="{doneEntries}">
+                <ul class="list-group">
+                    <f:for each="{doneEntries}" as="doneEntry">
+                        <li class="list-group-item">
+                            <f:form action="done" name="entry" object="{doneEntry}" pageType="984736">
+                                <f:form.button class="btn btn-warning">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                    <i class="far fa-arrow-alt-circle-left"></i>
+                                </f:form.button>
+                            </f:form>
+
+                            <span class="title">{doneEntry.title}</span>
+                            <f:if condition="{doneEntry.description}">
+                                <hr/>
+                                <p>{doneEntry.description}</p>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+        </div>
+    </div>
 </div>

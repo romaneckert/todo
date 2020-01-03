@@ -92,6 +92,7 @@ page {
     }
 
     includeCSS {
-        tx_tsite_bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
+        tx_site_bootstrap = https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css
+        tx_site_fontawesome = EXT:site/Resources/Public/css/fontawesome.min.css
     }
 }

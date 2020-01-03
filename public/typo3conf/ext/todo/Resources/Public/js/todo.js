@@ -12,7 +12,9 @@ $(document).ready(function (e) {
         });
 
         $form.find('button, input, textarea').prop('disabled', true);
+        $form.closest('.row').find('button').prop('disabled', true);
         $form.find('.spinner-border').show();
+        $form.find('i').hide();
     });
 
 });

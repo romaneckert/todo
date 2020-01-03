@@ -14,7 +14,6 @@ class Entry extends AbstractEntity {
 
     /**
      * @var string
-     * @Validate("NotEmpty")
      */
     protected $description;
 
@@ -33,7 +32,7 @@ class Entry extends AbstractEntity {
         return $this->description;
     }
 
-    public function setDescription(string $description): void {
+    public function setDescription(?string $description): void {
         $this->description = $description;
     }
 
