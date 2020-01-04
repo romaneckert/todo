@@ -4,7 +4,7 @@ namespace Eckert\Todo\Controller;
 
 use Eckert\Todo\Domain\Model\Entry;
 use Eckert\Todo\Domain\Repository\EntryRepository;
-use Eckert\Todo\Fixture\EntryFixture;
+use Eckert\Todo\Fixtures\EntryFixture;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\JsonView;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;

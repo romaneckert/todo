@@ -1,6 +1,6 @@
 <?php
 
-namespace Eckert\Todo\Fixture;
+namespace Eckert\Todo\Fixtures;
 
 use Eckert\Todo\Domain\Model\Entry;
 use Eckert\Todo\Domain\Repository\EntryRepository;

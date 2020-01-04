@@ -9,3 +9,7 @@ https://todo.localhost/
 ### heroku deployment
 
 git push heroku master:master
+
+### run tests
+
+composer test

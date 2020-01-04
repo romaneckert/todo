@@ -12,17 +12,24 @@
         "ext-gd": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "typo3/cms-fluid-styled-content": "9.5.11",
-        "typo3/cms-lowlevel": "9.5.11",
+        "typo3/cms-fluid-styled-content": "9.5.13",
+        "typo3/cms-lowlevel": "9.5.13",
         "typo3/minimal": "9.5",
         "symfony/dotenv": "5.0.1"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*",
-        "friendsofphp/php-cs-fixer": "2.16.1"
+        "friendsofphp/php-cs-fixer": "2.16.1",
+        "nimut/testing-framework": "5.0"
     },
     "scripts": {
-        "php-cs-fixer": "php-cs-fixer fix"
+        "php-cs-fixer": "php-cs-fixer fix",
+        "test": [
+            "@unit-tests",
+            "@functional-tests"
+        ],
+        "unit-tests": "./vendor/phpunit/phpunit/phpunit -c vendor/nimut/testing-framework/res/Configuration/UnitTests.xml public/typo3conf/ext/todo/Tests/Unit/",
+        "functional-tests": "./vendor/phpunit/phpunit/phpunit -c vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml public/typo3conf/ext/todo/Tests/Functional/"
     },
     "autoload": {
         "psr-4": {

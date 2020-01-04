@@ -1,10 +1,11 @@
 <?php
-# PackageStates.php
 
-# This file is maintained by TYPO3's package management. Although you can edit it
-# manually, you should rather use the extension manager for maintaining packages.
-# This file will be regenerated automatically if it doesn't exist. Deleting this file
-# should, however, never become necessary if you use the package commands.
+// PackageStates.php
+
+// This file is maintained by TYPO3's package management. Although you can edit it
+// manually, you should rather use the extension manager for maintaining packages.
+// This file will be regenerated automatically if it doesn't exist. Deleting this file
+// should, however, never become necessary if you use the package commands.
 
 return [
     'packages' => [
