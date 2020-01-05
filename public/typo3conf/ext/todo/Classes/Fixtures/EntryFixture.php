@@ -29,7 +29,7 @@ class EntryFixture {
             ],
             [
                 'title' => 'go for an interview',
-                'description' => 'Straße 42, 0815 Dresden',
+                'description' => 'Königsbrücker Straße 76, 01099 Dresden',
                 'done' => true,
             ],
             [
@@ -38,7 +38,7 @@ class EntryFixture {
                 'done' => false,
             ],
             [
-                'title' => 'get the job',
+                'title' => 'get the job and be happy',
                 'description' => null,
                 'done' => false,
             ],
